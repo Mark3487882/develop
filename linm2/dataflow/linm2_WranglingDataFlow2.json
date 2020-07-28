@@ -23,7 +23,7 @@
 					"script": "sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Sink1"
 				}
 			],
-			"script": "section Section1;\r\nshared inputdata2 = let\r\n  AdfDoc = AzureStorage.BlobContents(\"https://sqlvaqcn2qpbmvyt22.blob.core.windows.net/triggerdemo/input/data2.csv\"),\r\n  Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv])\r\nin\r\n  Csv;\r\nshared UserQuery = let\r\n  Source = inputdata2,\r\n  #\"Sorted rows\" = Table.Sort(Source, {{\"Column4\", Order.Descending}, {\"Column1\", Order.Ascending}})\r\nin\r\n  #\"Sorted rows\";\r\n"
+			"script": "section Section1;\r\nshared inputdata2 = let\r\n  AdfDoc = AzureStorage.BlobContents(\"https://sqlvaqcn2qpbmvyt22.blob.core.windows.net/triggerdemo/input/data2.csv\"),\r\n  Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv])\r\nin\r\n  Csv;\r\nshared UserQuery = let\r\n  Source = inputdata2,\r\n  #\"Sorted rows\" = Table.Sort(Source, {{\"Column4\", Order.Descending}, {\"Column1\", Order.Ascending}}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Sorted rows\", {{\"Column2\", \"new_column\"}})\r\nin\r\n  #\"Renamed columns\";\r\n"
 		}
 	}
 }
