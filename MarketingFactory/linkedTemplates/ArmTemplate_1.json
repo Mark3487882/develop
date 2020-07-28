@@ -955,31 +955,9 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Check Flow1 Completion File",
-						"type": "Validation",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "flow1_completed",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"timeout": "0.00:00:10",
-							"sleep": 10
-						}
-					},
-					{
 						"name": "Notebook-Flow2",
 						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Check Flow1 Completion File",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "0.00:00:10",
 							"retry": 0,
