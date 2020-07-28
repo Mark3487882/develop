@@ -28,7 +28,7 @@
 					}
 				],
 				"policy": {
-					"timeout": "7.00:00:00",
+					"timeout": "0.00:00:10",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -36,7 +36,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/07_Scheduling_Test/linm2_flow1"
+					"notebookPath": "/07_Scheduling_Test/linm2_flow5"
 				},
 				"linkedServiceName": {
 					"referenceName": "ProdClusterDatabricks",
@@ -106,37 +106,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Delete1",
-				"type": "Delete",
-				"dependsOn": [
-					{
-						"activity": "Create FLow2 Completion File",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "flow1_completed",
-						"type": "DatasetReference"
-					},
-					"enableLogging": false,
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"recursive": true
-					}
-				}
 			}
 		],
 		"folder": {
